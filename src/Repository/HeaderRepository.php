@@ -39,6 +39,15 @@ class HeaderRepository extends ServiceEntityRepository
         }
     }
 
+    public function deleteAllHeader()
+    {
+        $manager = $this->getEntityManager();
+        $query =  $manager->createQuery(
+            'DELETE FROM App\Entity\Header'
+        );
+        return $query->getResult();
+    }
+
 //    /**
 //     * @return Header[] Returns an array of Header objects
 //     */

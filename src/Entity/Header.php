@@ -4,15 +4,15 @@ namespace App\Entity;
 
 use App\Repository\HeaderRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;;
+use Symfony\Component\HttpFoundation\File\File;
 use  Symfony\Component\Validator\Constraints as Assert;
-use   Vich\UploaderBundle\Mapping\Annotation as Vich;
+use  Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
-
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: HeaderRepository::class)]
 #[ORM\HasLifecycleCallbacks]
-#[Vich\Uploadable]
+
 class Header
 {
     #[ORM\Id]
@@ -26,9 +26,9 @@ class Header
     private ?string $fullName = null;
 
     #[Vich\UploadableField(mapping: 'header_images', fileNameProperty: 'imageName')]
-        private ?File $imageFile = null;
+    private ?File $imageFile = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'string', nullable: true)]
     private ?string $imageName = null;
 
     #[ORM\Column]
@@ -68,7 +68,7 @@ class Header
 
     
 /**
- * Set the value of imageFile
+ * Shadow and bone
  *
  * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile;
     */ 
@@ -92,10 +92,10 @@ class Header
         return $this->imageName;
     }
 
-    public function setImageName(?string $imageName): void
+    public function setImageName(?string $imageName = null): self
     {
         $this->imageName = $imageName;
-
+        return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable
