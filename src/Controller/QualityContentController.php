@@ -55,6 +55,7 @@ class QualityContentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $qualityContent->setUpdatedAt(new \DateTimeImmutable());
             $qualityContentRepository->save($qualityContent, true);
 
             return $this->redirectToRoute('app_quality_content_index', [], Response::HTTP_SEE_OTHER);

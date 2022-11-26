@@ -6,6 +6,7 @@ use App\Repository\QualityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use  Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: QualityRepository::class)]
@@ -17,12 +18,16 @@ class Quality
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank()]
+    #[Assert\NotNull()]
     private ?string $name = null;
 
     #[ORM\Column]
+    #[Assert\NotNull()]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
+    #[Assert\NotNull()]
     private ?\DateTimeImmutable $UpdatedAt = null;
 
     #[ORM\OneToMany(mappedBy: 'quality', targetEntity: QualityContent::class)]

@@ -2,24 +2,26 @@
 
 namespace App\Form;
 
-use App\Entity\Quality;
+use App\Entity\Skills;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class QualityType extends AbstractType
+class SkillsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name')
-        ;
+            ->add('percentage',  RangeType::class)
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Quality::class,
+            'data_class' => Skills::class,
         ]);
     }
 }

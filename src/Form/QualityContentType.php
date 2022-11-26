@@ -27,7 +27,7 @@ class QualityContentType extends AbstractType
                         ->orderBy('i.name', 'ASC');
                         
                 },
-                'multiple' => true,
+                'multiple' => false,
                 'expanded' => true,
                 'choice_label' => 'name'
             ]
