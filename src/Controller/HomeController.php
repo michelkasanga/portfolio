@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Header;
 use App\Repository\HeaderRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;

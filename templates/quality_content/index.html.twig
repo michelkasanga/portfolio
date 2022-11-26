@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}QualityContent index{% endblock %}
+
+{% block body %}
+    <h1>QualityContent index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Post</th>
+                <th>Company</th>
+                <th>StartedAt</th>
+                <th>EndedAt</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>Content</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for quality_content in quality_contents %}
+            <tr>
+                <td>{{ quality_content.id }}</td>
+                <td>{{ quality_content.post }}</td>
+                <td>{{ quality_content.company }}</td>
+                <td>{{ quality_content.startedAt }}</td>
+                <td>{{ quality_content.endedAt }}</td>
+                <td>{{ quality_content.createdAt ? quality_content.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ quality_content.updatedAt ? quality_content.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ quality_content.content }}</td>
+                <td>
+                    <a href="{{ path('app_quality_content_show', {'id': quality_content.id}) }}">show</a>
+                    <a href="{{ path('app_quality_content_edit', {'id': quality_content.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_quality_content_new') }}">Create new</a>
+{% endblock %}
