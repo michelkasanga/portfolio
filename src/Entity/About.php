@@ -35,6 +35,10 @@ class About
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $birthday = null;
 
+    #[ORM\Column(length: 255)]
+    #[Assert\NotNull()]
+    private ?string $degree = null;
+
     #[ORM\Column(nullable: true)]
     private ?int $experience = null;
 
@@ -63,6 +67,7 @@ class About
     #[ORM\Column]
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $updatedAt = null;
+
 
   public function __construct()
   {
@@ -117,7 +122,7 @@ class About
         return $this->imageName;
     }
 
-    public function setImageName(string $imageName): self
+    public function setImageName(?string $imageName): self
     {
         $this->imageName = $imageName;
 
@@ -132,6 +137,19 @@ class About
     public function setBirthday(\DateTimeInterface $birthday): self
     {
         $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    
+    public function getDegree(): ?string
+    {
+        return $this->degree;
+    }
+
+    public function setDegree(string $degree): self
+    {
+        $this->degree = $degree;
 
         return $this;
     }
@@ -231,5 +249,6 @@ class About
 
         return $this;
     }
+
 
 }

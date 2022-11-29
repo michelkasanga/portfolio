@@ -18,3 +18,8 @@ vich_uploader:
            uri_prefix: /images/blog
            upload_destination: '%kernel.project_dir%/public/images/blog'
            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+       clients_say_images:
+           uri_prefix: /images/clientsSay
+           upload_destination: '%kernel.project_dir%/public/images/clientsSay'
+           namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

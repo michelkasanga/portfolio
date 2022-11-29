@@ -39,6 +39,8 @@ class QualityContentRepository extends ServiceEntityRepository
         }
     }
 
+    
+
 //    /**
 //     * @return QualityContent[] Returns an array of QualityContent objects
 //     */

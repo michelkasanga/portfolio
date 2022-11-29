@@ -2,34 +2,41 @@
 
 namespace App\Entity;
 
-use App\Repository\HeaderRepository;
+use App\Repository\ClientsSayRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use  Symfony\Component\Validator\Constraints as Assert;
 use  Vich\UploaderBundle\Mapping\Annotation as Vich;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[Vich\Uploadable]
-#[ORM\Entity(repositoryClass: HeaderRepository::class)]
-#[ORM\HasLifecycleCallbacks]
-
-class Header
+#[UniqueEntity('fullName')]
+#[ORM\Entity(repositoryClass: ClientsSayRepository::class)]
+class ClientsSay
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
-    #[Assert\NotBlank()]
-    #[Assert\Length(min:2, max: 50)]
+    #[ORM\Column(length: 60)]
+    #[Assert\Length(min:2, max: 60)]
     private ?string $fullName = null;
 
-    #[Vich\UploadableField(mapping: 'header_images', fileNameProperty: 'imageName')]
+    #[ORM\Column(length: 180, nullable: true)]
+    private ?string $profession = null;
+
+    #[Vich\UploadableField(mapping: 'clients_say_images', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
-    #[ORM\Column(type: 'string', nullable: true)]
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageName = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank()]
+    private ?string $message = null;
 
     #[ORM\Column]
     #[Assert\NotNull()]
@@ -42,12 +49,7 @@ class Header
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
-    }
-    
-    #[ORM\PrePersist]
-    public function  setUpdateAtValue()
-    {
-        $this->updateAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
     }
     public function getId(): ?int
     {
@@ -66,12 +68,18 @@ class Header
         return $this;
     }
 
-    
-/**
- * Shadow and bone
- *
- * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile;
-    */ 
+    public function getProfession(): ?string
+    {
+        return $this->profession;
+    }
+
+    public function setProfession(?string $profession): self
+    {
+        $this->profession = $profession;
+
+        return $this;
+    }
+
     public function setImageFile(?File $imageFile = null) :void
     {
         $this->imageFile = $imageFile;
@@ -92,9 +100,22 @@ class Header
         return $this->imageName;
     }
 
-    public function setImageName(?string $imageName): self
+    public function setImageName(string $imageName): self
     {
         $this->imageName = $imageName;
+
+        return $this;
+    }
+
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+
+    public function setMessage(string $message): self
+    {
+        $this->message = $message;
+
         return $this;
     }
 

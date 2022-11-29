@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Header{% endblock %}
+
+{% block body %}
+    <h1>Header</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ header.id }}</td>
+            </tr>
+            <tr>
+                <th>FullName</th>
+                <td>{{ header.fullName }}</td>
+            </tr>
+            <tr>
+               <img src=" {{ vich_uploader_asset(header, 'imageFile') }} " >
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ header.createdAt ? header.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ header.updatedAt ? header.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_header_index') }}">back to list</a>
+
+    <a href="{{ path('app_header_edit', {'id': header.id}) }}">edit</a>
+
+    {{ include('header/_delete_form.html.twig') }}
+{% endblock %}
