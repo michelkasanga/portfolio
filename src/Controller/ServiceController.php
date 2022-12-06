@@ -16,7 +16,7 @@ class ServiceController extends AbstractController
     #[Route('/', name: 'app_service_index', methods: ['GET'])]
     public function index(ServiceRepository $serviceRepository): Response
     {
-        return $this->render('service/index.html.twig', [
+        return $this->render('pages/service/index.html.twig', [
             'services' => $serviceRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class ServiceController extends AbstractController
             return $this->redirectToRoute('app_service_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('service/new.html.twig', [
+        return $this->renderForm('pages/service/new.html.twig', [
             'service' => $service,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class ServiceController extends AbstractController
     #[Route('/{id}', name: 'app_service_show', methods: ['GET'])]
     public function show(Service $service): Response
     {
-        return $this->render('service/show.html.twig', [
+        return $this->render('pages/service/show.html.twig', [
             'service' => $service,
         ]);
     }
@@ -61,7 +61,7 @@ class ServiceController extends AbstractController
             return $this->redirectToRoute('app_service_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('service/edit.html.twig', [
+        return $this->renderForm('pages/service/edit.html.twig', [
             'service' => $service,
             'form' => $form,
         ]);

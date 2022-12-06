@@ -16,7 +16,7 @@ class ClientsSayController extends AbstractController
     #[Route('/', name: 'app_clients_say_index', methods: ['GET'])]
     public function index(ClientsSayRepository $clientsSayRepository): Response
     {
-        return $this->render('clients_say/index.html.twig', [
+        return $this->render('pages/clients_say/index.html.twig', [
             'clients_says' => $clientsSayRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class ClientsSayController extends AbstractController
             return $this->redirectToRoute('app_clients_say_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('clients_say/new.html.twig', [
+        return $this->renderForm('pages/clients_say/new.html.twig', [
             'clients_say' => $clientsSay,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class ClientsSayController extends AbstractController
     #[Route('/{id}', name: 'app_clients_say_show', methods: ['GET'])]
     public function show(ClientsSay $clientsSay): Response
     {
-        return $this->render('clients_say/show.html.twig', [
+        return $this->render('pages/clients_say/show.html.twig', [
             'clients_say' => $clientsSay,
         ]);
     }
@@ -60,7 +60,7 @@ class ClientsSayController extends AbstractController
             return $this->redirectToRoute('app_clients_say_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('clients_say/edit.html.twig', [
+        return $this->renderForm('pages/clients_say/edit.html.twig', [
             'clients_say' => $clientsSay,
             'form' => $form,
         ]);

@@ -16,7 +16,7 @@ class AboutController extends AbstractController
     #[Route('/', name: 'app_about_index', methods: ['GET'])]
     public function index(AboutRepository $aboutRepository): Response
     {
-        return $this->render('about/index.html.twig', [
+        return $this->render('pages/about/index.html.twig', [
             'abouts' => $aboutRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class AboutController extends AbstractController
             return $this->redirectToRoute('app_about_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('about/new.html.twig', [
+        return $this->renderForm('pages/about/new.html.twig', [
             'about' => $about,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class AboutController extends AbstractController
     #[Route('/{id}', name: 'app_about_show', methods: ['GET'])]
     public function show(About $about): Response
     {
-        return $this->render('about/show.html.twig', [
+        return $this->render('pages/about/show.html.twig', [
             'about' => $about,
         ]);
     }
@@ -61,7 +61,7 @@ class AboutController extends AbstractController
             return $this->redirectToRoute('app_about_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('about/edit.html.twig', [
+        return $this->renderForm('pages/about/edit.html.twig', [
             'about' => $about,
             'form' => $form,
         ]);

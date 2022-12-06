@@ -16,7 +16,7 @@ class BlogController extends AbstractController
     #[Route('/', name: 'app_blog_index', methods: ['GET'])]
     public function index(BlogRepository $blogRepository): Response
     {
-        return $this->render('blog/index.html.twig', [
+        return $this->render('pages/blog/index.html.twig', [
             'blogs' => $blogRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class BlogController extends AbstractController
             return $this->redirectToRoute('app_blog_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('blog/new.html.twig', [
+        return $this->renderForm('pages/blog/new.html.twig', [
             'blog' => $blog,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class BlogController extends AbstractController
     #[Route('/{id}', name: 'app_blog_show', methods: ['GET'])]
     public function show(Blog $blog): Response
     {
-        return $this->render('blog/show.html.twig', [
+        return $this->render('pages/blog/show.html.twig', [
             'blog' => $blog,
         ]);
     }
@@ -60,7 +60,7 @@ class BlogController extends AbstractController
             return $this->redirectToRoute('app_blog_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('blog/edit.html.twig', [
+        return $this->renderForm('pages/blog/edit.html.twig', [
             'blog' => $blog,
             'form' => $form,
         ]);

@@ -16,7 +16,7 @@ class QualityContentController extends AbstractController
     #[Route('/', name: 'app_quality_content_index', methods: ['GET'])]
     public function index(QualityContentRepository $qualityContentRepository): Response
     {
-        return $this->render('quality_content/index.html.twig', [
+        return $this->render('pages/quality_content/index.html.twig', [
             'quality_contents' => $qualityContentRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class QualityContentController extends AbstractController
             return $this->redirectToRoute('app_quality_content_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('quality_content/new.html.twig', [
+        return $this->renderForm('pages/quality_content/new.html.twig', [
             'quality_content' => $qualityContent,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class QualityContentController extends AbstractController
     #[Route('/{id}', name: 'app_quality_content_show', methods: ['GET'])]
     public function show(QualityContent $qualityContent): Response
     {
-        return $this->render('quality_content/show.html.twig', [
+        return $this->render('pages/quality_content/show.html.twig', [
             'quality_content' => $qualityContent,
         ]);
     }
@@ -61,7 +61,7 @@ class QualityContentController extends AbstractController
             return $this->redirectToRoute('app_quality_content_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('quality_content/edit.html.twig', [
+        return $this->renderForm('pages/quality_content/edit.html.twig', [
             'quality_content' => $qualityContent,
             'form' => $form,
         ]);

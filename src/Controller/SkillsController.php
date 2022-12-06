@@ -16,7 +16,7 @@ class SkillsController extends AbstractController
     #[Route('/', name: 'app_skills_index', methods: ['GET'])]
     public function index(SkillsRepository $skillsRepository): Response
     {
-        return $this->render('skills/index.html.twig', [
+        return $this->render('pages/skills/index.html.twig', [
             'skills' => $skillsRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class SkillsController extends AbstractController
             return $this->redirectToRoute('app_skills_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('skills/new.html.twig', [
+        return $this->renderForm('pages/skills/new.html.twig', [
             'skill' => $skill,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class SkillsController extends AbstractController
     #[Route('/{id}', name: 'app_skills_show', methods: ['GET'])]
     public function show(Skills $skill): Response
     {
-        return $this->render('skills/show.html.twig', [
+        return $this->render('pages/skills/show.html.twig', [
             'skill' => $skill,
         ]);
     }
@@ -60,7 +60,7 @@ class SkillsController extends AbstractController
             return $this->redirectToRoute('app_skills_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('skills/edit.html.twig', [
+        return $this->renderForm('pages/skills/edit.html.twig', [
             'skill' => $skill,
             'form' => $form,
         ]);
