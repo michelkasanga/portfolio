@@ -51,25 +51,28 @@
     <div class="container-fluid bg-primary d-flex align-items-center mb-5 py-5" id="home"  style=" min-height:100vh;">
         <div class="container">
             {% for header in  headers %}
-                  <div class="row align-items-center">
-                <div class="col-lg-5 col-xl-5  px-5 pl-lg-0 pb-5 pb-lg-0" >
-                    <img class="img-fluid w-100 rounded-circle shadow-sm"src=" {{ vich_uploader_asset(header, 'imageFile')}} " alt="">
-                </div>
-                <div class="col-lg-7 col-xl-5 text-center text-lg-left">
-                    <h3 class="text-white font-weight-normal mb-3">Je suis</h3>
-                    <h1 class="display-3 text-uppercase text-primary mb-2" style="-webkit-text-stroke: 2px #ffffff;">{{ header.fullname }} </h1>
-                    <h1 class="typed-text-output d-inline font-weight-lighter text-white"></h1>
-                    <div class="typed-text d-none"> animatrice de reunion , Danseuse</div>
-                    <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
-                        <a href="" class="btn btn-outline-light mr-5">Download CV</a>
-                        <button type="button" class="btn-play" data-toggle="modal"
-                            data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-target="#videoModal">
-                            <span></span>
-                        </button>
-                        <h5 class="font-weight-normal text-white m-0 ml-4 d-none d-sm-block">Play Video</h5>
-                    </div>
-                </div>
-            </div>
+                {% if header.isPublic == 1 %}
+                        <div class="row align-items-center">
+                            <div class="col-lg-5 col-xl-5  px-5 pl-lg-0 pb-5 pb-lg-0" >
+                                <img class="img-fluid w-100 rounded-circle shadow-sm"src=" {{ vich_uploader_asset(header, 'imageFile')}} " alt="">
+                            </div>
+                            <div class="col-lg-7 col-xl-5 text-center text-lg-left">
+                                <h3 class="text-white font-weight-normal mb-3">Je suis</h3>
+                                <h1 class="display-3 text-uppercase text-primary mb-2" style="-webkit-text-stroke: 2px #ffffff;">{{ header.fullname }} </h1>
+                                <h1 class="typed-text-output d-inline font-weight-lighter text-white"></h1>
+                                <div class="typed-text d-none">  {{ header.toDo }} </div>
+                                <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
+                                    <a href="" class="btn btn-outline-light mr-5">Download CV</a>
+                                    <button type="button" class="btn-play" data-toggle="modal"
+                                        data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-target="#videoModal">
+                                        <span></span>
+                                    </button>
+                                    <h5 class="font-weight-normal text-white m-0 ml-4 d-none d-sm-block">Play Video</h5>
+                                </div>
+                            </div>
+                      </div>
+                {% endif %}
+                 
             {% endfor %}
           
 
@@ -86,6 +89,7 @@
                 <h1 class="position-absolute text-uppercase text-primary">a propos de moi</h1>
             </div>
             {% for about in abouts %}
+                {% if about.isPublic == 1 %}
             <div class="row align-items-center">
                 <div class="col-lg-5 pb-4 pb-lg-0">
                     <img class="img-fluid rounded w-100" src=" {{vich_uploader_asset(about, 'imageFile')}} " alt="">
@@ -110,6 +114,7 @@
                     </div>
 
             </div>
+            {% endif %}
                  {% endfor %}
 
 
@@ -213,15 +218,17 @@
             <div class="row pb-3">
 
                 {% for service in services %}
-            
-                    <div class="col-lg-4 col-md-6 text-center mb-5">
-                        <div class="d-flex align-items-center justify-content-center mb-4">
-                            <i class="fa fa-2x fa-user service-icon bg-primary text-white mr-3"></i>
-                            <h4 class="font-weight-bold m-0"> {{ service.name }} </h4>
+                    {% if service.isPublic == 1 %}
+                        <div class="col-lg-4 col-md-6 text-center mb-5">
+                            <div class="d-flex align-items-center justify-content-center mb-4">
+                                <i class="fa fa-2x fa-user service-icon bg-primary text-white mr-3"></i>
+                                <h4 class="font-weight-bold m-0"> {{ service.name }} </h4>
+                            </div>
+                            <p> {{ service.detail }} </p>
+                            <a class="border-bottom border-primary text-decoration-none" href="">Read More</a>
                         </div>
-                        <p> {{ service.detail }} </p>
-                        <a class="border-bottom border-primary text-decoration-none" href="">Read More</a>
-                    </div>
+                    {% endif %}
+            
         
                 {% endfor %}
 

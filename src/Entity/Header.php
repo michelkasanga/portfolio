@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\HeaderRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use  Symfony\Component\Validator\Constraints as Assert;
@@ -32,6 +33,10 @@ class Header
     private ?string $imageName = null;
 
     #[ORM\Column]
+    private ?bool $isPublic = null;
+
+
+    #[ORM\Column]
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $createdAt = null;
 
@@ -39,9 +44,15 @@ class Header
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $toDo = null;
+
+    
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt  = new \DateTimeImmutable();
+        $this->setUpdatedAt(new \DateTimeImmutable());
     }
     
     #[ORM\PrePersist]
@@ -98,6 +109,18 @@ class Header
         return $this;
     }
 
+    public function isIsPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): self
+    {
+        $this->isPublic = $isPublic;
+
+        return $this;
+    }
+
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
@@ -110,6 +133,7 @@ class Header
         return $this;
     }
 
+    #[ORM\PrePersist]
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
@@ -121,4 +145,18 @@ class Header
 
         return $this;
     }
+
+    public function getToDo(): ?string
+    {
+        return $this->toDo;
+    }
+
+    public function setToDo(string $toDo): self
+    {
+        $this->toDo = $toDo;
+
+        return $this;
+    }
+
+   
 }

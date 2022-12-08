@@ -55,6 +55,7 @@ class HeaderController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $header->setUpdatedAt( new \DateTimeImmutable());
             $headerRepository->save($header, true);
 
             return $this->redirectToRoute('app_header_index', [], Response::HTTP_SEE_OTHER);

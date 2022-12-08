@@ -70,15 +70,12 @@ class AboutControllerTest extends WebTestCase
         $fixture->setTitle('My Title');
         $fixture->setFullName('My Title');
         $fixture->setImageName('My Title');
-        $fixture->setBirthday('My Title');
         $fixture->setExperience('My Title');
         $fixture->setPhone('My Title');
         $fixture->setEmail('My Title');
         $fixture->setAddress('My Title');
         $fixture->setFreelance('My Title');
         $fixture->setDetail('My Title');
-        $fixture->setCreatedAt('My Title');
-        $fixture->setUpdatedAt('My Title');
 
         $this->repository->save($fixture, true);
 
@@ -97,15 +94,12 @@ class AboutControllerTest extends WebTestCase
         $fixture->setTitle('My Title');
         $fixture->setFullName('My Title');
         $fixture->setImageName('My Title');
-        $fixture->setBirthday('My Title');
         $fixture->setExperience('My Title');
         $fixture->setPhone('My Title');
         $fixture->setEmail('My Title');
         $fixture->setAddress('My Title');
         $fixture->setFreelance('My Title');
         $fixture->setDetail('My Title');
-        $fixture->setCreatedAt('My Title');
-        $fixture->setUpdatedAt('My Title');
 
         $this->repository->save($fixture, true);
 
@@ -154,15 +148,12 @@ class AboutControllerTest extends WebTestCase
         $fixture->setTitle('My Title');
         $fixture->setFullName('My Title');
         $fixture->setImageName('My Title');
-        $fixture->setBirthday('My Title');
         $fixture->setExperience('My Title');
         $fixture->setPhone('My Title');
         $fixture->setEmail('My Title');
         $fixture->setAddress('My Title');
         $fixture->setFreelance('My Title');
         $fixture->setDetail('My Title');
-        $fixture->setCreatedAt('My Title');
-        $fixture->setUpdatedAt('My Title');
 
         $this->repository->save($fixture, true);
 

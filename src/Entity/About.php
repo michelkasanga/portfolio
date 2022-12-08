@@ -68,10 +68,14 @@ class About
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\Column]
+    private ?bool $isPublic = null;
+
 
   public function __construct()
   {
         $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new  \DateTimeImmutable();
   }
     public function getId(): ?int
     {
@@ -246,6 +250,18 @@ class About
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function isIsPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): self
+    {
+        $this->isPublic = $isPublic;
 
         return $this;
     }

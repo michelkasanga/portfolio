@@ -20,7 +20,7 @@ class Skills
 
     #[ORM\Column]
     #[Assert\Positive()]
-    #[Assert\Length(min:1, max: 100)]
+    #[Assert\Length(min: 1, max: 100)]
     private ?int $percentage = null;
 
     #[ORM\Column]
